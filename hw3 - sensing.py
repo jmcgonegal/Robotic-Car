@@ -24,7 +24,7 @@ from math import *
 import random
 
 # --------
-#
+# 
 # the "world" has 4 landmarks.
 # the robot's initial coordinates are somewhere in the square
 # represented by the landmarks.
@@ -36,14 +36,14 @@ landmarks  = [[0.0, 100.0], [0.0, 0.0], [100.0, 0.0], [100.0, 100.0]] # position
 world_size = 100.0 # world is NOT cyclic. Robot is allowed to travel "out of bounds"
 
 # ------------------------------------------------
-#
+# 
 # this is the robot class
 #
 
 class robot:
 
     # --------
-    # init:
+    # init: 
     #	creates robot and initializes location/orientation
     #
 
@@ -59,12 +59,12 @@ class robot:
 
 
     def __repr__(self):
-        return '[x=%.6s y=%.6s orient=%.6s]' % (str(self.x), str(self.y),
+        return '[x=%.6s y=%.6s orient=%.6s]' % (str(self.x), str(self.y), 
                                                 str(self.orientation))
 
 
     # --------
-    # set:
+    # set: 
     #	sets a robot coordinate
     #
 
@@ -76,7 +76,7 @@ class robot:
         self.orientation = float(new_orientation)
 
     # --------
-    # set_noise:
+    # set_noise: 
     #	sets the noise parameters
     #
 
@@ -93,26 +93,30 @@ class robot:
     # sense:
     #   obtains bearings from positions
     #
-
+    
     def sense(self): #do not change the name of this function
-      Z = []
-      for i in range(len(landmarks)):
-        y = landmarks[i][0]
-        x = landmarks[i][1]
-        new_x = x - self.x
-        new_y = y - self.y
-        new_z = atan2(new_y, new_x) - self.orientation
-        Z.append( new_z % (2*pi) )
+        Z = []
 
-      return Z #Leave this line here. Return vector Z of 4 bearings.
+        # ENTER CODE HERE
+        # HINT: You will probably need to use the function atan2()
+        for i in range(len(landmarks)):
+            y = landmarks[i][0]
+            x = landmarks[i][1]
+            new_x = x - self.x
+            new_y = y - self.y
+            new_z = atan2(new_y, new_x) - self.orientation
 
+            Z.append( new_z % (2*pi) )
+        return Z #Leave this line here. Return vector Z of 4 bearings.
+    
     ############## ONLY ADD/MODIFY CODE ABOVE HERE ####################
+
 
 ## IMPORTANT: You may uncomment the test cases below to test your code.
 ## But when you submit this code, your test cases MUST be commented
 ## out. Our testing program provides its own code for testing your
 ## sense function with randomized initial robot coordinates.
-
+    
 ## --------
 ## TEST CASES:
 
@@ -122,46 +126,45 @@ class robot:
 ## 1) The following code should print the list [6.004885648174475, 3.7295952571373605, 1.9295669970654687, 0.8519663271732721]
 ##
 ##
-length = 20.
-bearing_noise  = 0.0
-steering_noise = 0.0
-distance_noise = 0.0
-
-myrobot = robot(length)
-myrobot.set(30.0, 20.0, 0.0)
-myrobot.set_noise(bearing_noise, steering_noise, distance_noise)
-
-print 'Robot:        ', myrobot
-print 'Measurements: ', myrobot.sense()
-print '      Should = [6.004885648174475, 3.7295952571373605, 1.9295669970654687, 0.8519663271732721]'
+##length = 20.
+##bearing_noise  = 0.0
+##steering_noise = 0.0
+##distance_noise = 0.0
+##
+##myrobot = robot(length)
+##myrobot.set(30.0, 20.0, 0.0)
+##myrobot.set_noise(bearing_noise, steering_noise, distance_noise)
+##
+##print 'Robot:        ', myrobot
+##print 'Measurements: ', myrobot.sense()
+##
 
 ## IMPORTANT: You may uncomment the test cases below to test your code.
 ## But when you submit this code, your test cases MUST be commented
 ## out. Our testing program provides its own code for testing your
 ## sense function with randomized initial robot coordinates.
-
+    
 
 ##
 ## 2) The following code should print the list [5.376567117456516, 3.101276726419402, 1.3012484663475101, 0.22364779645531352]
 ##
 ##
-print
-length = 20.
-bearing_noise  = 0.0
-steering_noise = 0.0
-distance_noise = 0.0
-
-myrobot = robot(length)
-myrobot.set(30.0, 20.0, pi / 5.0)
-myrobot.set_noise(bearing_noise, steering_noise, distance_noise)
-
-print 'Robot:        ', myrobot
-print 'Measurements: ', myrobot.sense()
-print '      Should = [5.376567117456516, 3.101276726419402, 1.3012484663475101, 0.22364779645531352]'
+##length = 20.
+##bearing_noise  = 0.0
+##steering_noise = 0.0
+##distance_noise = 0.0
+##
+##myrobot = robot(length)
+##myrobot.set(30.0, 20.0, pi / 5.0)
+##myrobot.set_noise(bearing_noise, steering_noise, distance_noise)
+##
+##print 'Robot:        ', myrobot
+##print 'Measurements: ', myrobot.sense()
+##
 
 
 ## IMPORTANT: You may uncomment the test cases below to test your code.
 ## But when you submit this code, your test cases MUST be commented
 ## out. Our testing program provides its own code for testing your
 ## sense function with randomized initial robot coordinates.
-
+    
